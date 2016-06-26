@@ -8,7 +8,7 @@ CREATE TABLE code_pdo.alunos (
 );
 
 # populate table
-INSERT INTO code_pdo.alunos (nome, nota) VALUES
+INSERT INTO `code_pdo`.`alunos` (nome, nota) VALUES
     ('Jose', 8),
     ('Ricardo', 3),
     ('Paulo', 10),

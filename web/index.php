@@ -21,19 +21,19 @@ function exibeAlunos($query)
              "<td>ID</td>"   .
              "<td>Nome</td>" .
              "<td>Nota</td>" .
-         "</th>"
+         "</th>";
     foreach ($res as $key) {
         echo "<tr>" .
              "<td>" . $res['id']   . "</td>" .
              "<td>" . $res['nome'] . "</td>" .
              "<td>" . $res['nota'] . "</td>" .
-             "</tr>"
+             "</tr>";
     }
-    echo "</table>"
+    echo "</table>";
 }
 
 // agora sim o codigo roda
 echo "<h2>exibindo todos os alunos</h2>";
     exibeAlunos("SELECT * FROM `code_pdo`.`alunos`");
-echo "<h2>exibindo as 3 maiores notas</h2>"
+echo "<h2>exibindo as 3 maiores notas</h2>";
     exibeAlunos("SELECT * FROM `code_pdo`.`alunos` ORDER BY `nota` DESC LIMIT=3");

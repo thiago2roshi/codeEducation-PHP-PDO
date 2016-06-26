@@ -7,7 +7,7 @@
  * modelo simplificado para etapa 1 do projeto phpPDO
  */
 
-public class Conexao
+class Conexao
 {
     /**
      * construtor da conexão
