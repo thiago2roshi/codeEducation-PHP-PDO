@@ -24,7 +24,7 @@ class Conexao
      * 			e libera a memoria usada
      * @return null
      */
-    public function __destruction()
+    public function __destruct()
     {
         $this->disconnect();
         foreach ($this as $key => $value) {
@@ -35,12 +35,12 @@ class Conexao
      * Variaveis
      * @var [type]
      */
-    private static $sgdb = "mysql";         // @var String Banco de dados
-    private static $host = "172.17.0.2";    // @var String endereco do host
-    private static $port = "3306";          // @var String porta de escuta do SGDB
-    private static $user = "root";          // @var String userID do DB
-    private static $pass = "Pindauva";      // @var String senha do DB
-    private static $db   = "codeEducation"; // @var String DB usado
+    private static $sgdb = "mysql";       // @var String Banco de dados
+    private static $host = "127.0.0.1";   // @var String endereco do host
+    private static $port = "3306";        // @var String porta de escuta do SGDB
+    private static $user = "userGuy";     // @var String userID do DB
+    private static $pass = "Pindauva";    // @var String senha do DB
+    private static $db   = "code_pdo";    // @var String DB usado
 
     /**
      * Definindo Getters
@@ -61,7 +61,14 @@ class Conexao
     private function connect()
     {
         try{
-            $this->conexao = new PDO("{$this->getDBType()}:host={$this->getHost()};port={$this->getPort()};dbname={$this->getDB()};charset=utf8", $this->getUser(), $this->getPwd());
+            $this->conexao = new PDO(
+                                 "{$this->getDBType()}:
+                                 host={$this->getHost()};
+                                 port={$this->getPort()};
+                                 dbname={$this->getDB()};charset=utf8",
+                                 $this->getUser(),
+                                 $this->getPwd()
+                             );
 
         }catch (\PDOException $e){
             die(
@@ -97,18 +104,18 @@ class Conexao
  */
     public function selectDB($sql, $params = null, $class = null)
     {
-        $conexao = $this->connect();
-        $query   = $conexao->prepare($sql);
+        $query = $this->connect()->prepare($sql);
         $query->execute($params);
 
         if ($query->rowCount() < 1) {
             return false;
+        } elseif (isset($class)) {
+            $rs = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
         } else {
-            #$result = $query->fetchAll(PDO::FETCH_CLASS) or die(print_r($query->errorInfo(), true));
-            $result = $query->fetchAll() or die(print_r($query->errorInfo(), true));
+            $rs = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
         }
-        self::__destruction();
-        return $result;
+        self::__destruct();
+        return $rs;
     }
 
 
@@ -124,10 +131,10 @@ class Conexao
         $query   = $conexao->prepare($sql);
         $query->execute($params);
 
-        $result = $conexao->lastInserId() or die(print_r($query->errorInfo(), true));
+        $rs = $conexao->lastInserId() or die(print_r($query->errorInfo(), true));
 
-        self::__destruction();
-        return $result;
+        self::__destruct();
+        return $rs;
     }
 
     /**
@@ -136,16 +143,15 @@ class Conexao
      * @param  String $param => Parametro adicional - se não declada = NULL
      * @return String        => Resultado da Query  - exibe linhas afetadas
      */
-    public function updateDB($query, $params= null)
+    public function updateDB($sql, $params= null)
     {
-        $conexao = $this->connect();
-        $query = $conexao->prepare($sql);
-        $query = $query->execute($params);
+        $query = $this->connect()->prepare($sql);
+        $query->execute($params);
 
-        $result = $conexao->rowCount() or die(print_r($query->errorInfo(), true));
+        $rs = $query->rowCount() or die(print_r($query->errorInfo(), true));
 
-        self::__destruction();
-        return $result;
+        self::__destruct();
+        return $rs;
     }
 
     /**
@@ -156,14 +162,12 @@ class Conexao
      */
     public function deleteDB($sql, $params = null)
     {
-        $conexao = $this->connect();
-        $query = $conexao->prepare($sql);
-        $query = $query->execute();
+        $query = $this->connect()$this->prepare($sql);
+        $query->execute($params);
 
-        $result = $conexao->rowCount() or die(print_r($query->errorInfo(), true));
+        $rs = $query->rowCount() or die(print_r($query->errorInfo(), true));
 
-        self::__destruction();
-        return $result;
-
+        self::__destruct();
+        return $rs;
     }
 }

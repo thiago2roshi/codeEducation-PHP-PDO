@@ -8,4 +8,3 @@ $cliente->setNome('Rogerio')
         ->setEmail('R.steve@srv.io')
 ;
 $cliente->inserir();
-
