@@ -6,13 +6,12 @@
  *
  * modelo simplificado para etapa 1 do projeto phpPDO
  */
-
+require_once __DIR__ . '/CONFIG.php';
 class Conexao
 {
     /**
      * construtor da conexão
      */
-    // private function __construct($sgdb, $host, $port, $db, $user, $pass){}
     public function __construct(){}
     /**
      * Evitar que função sega clonada
@@ -35,12 +34,12 @@ class Conexao
      * Variaveis
      * @var [type]
      */
-    private static $sgdb = "mysql";       // @var String Banco de dados
-    private static $host = "127.0.0.1";   // @var String endereco do host
-    private static $port = "3306";        // @var String porta de escuta do SGDB
-    private static $user = "userGuy";     // @var String userID do DB
-    private static $pass = "Pindauva";    // @var String senha do DB
-    private static $db   = "code_pdo";    // @var String DB usado
+    private static $sgdb = DB_SGDB;   // @var String Banco de dados
+    private static $host = DB_HOST;   // @var String endereco do host (DOCKER)
+    private static $port = DB_PORT;   // @var String porta de escuta do SGDB
+    private static $user = DB_USER;   // @var String userID do DB
+    private static $pass = DB_PASS;   // @var String senha do DB
+    private static $db   = DB_DB;     // @var String DB usado
 
     /**
      * Definindo Getters
@@ -61,14 +60,15 @@ class Conexao
     private function connect()
     {
         try{
-            $this->conexao = new PDO(
-                                 "{$this->getDBType()}:
-                                 host={$this->getHost()};
-                                 port={$this->getPort()};
-                                 dbname={$this->getDB()};charset=utf8",
-                                 $this->getUser(),
-                                 $this->getPwd()
-                             );
+            $this->conexao = new \PDO(
+                                "{$this->getDBType()}:"    .
+                                "host={$this->getHost()};" .
+                                "port={$this->getPort()};" .
+                                "dbname={$this->getDB()};" .
+                                "charset=utf8",
+                                $this->getUser(),
+                                $this->getPwd()
+                            );
 
         }catch (\PDOException $e){
             die(
@@ -110,9 +110,9 @@ class Conexao
         if ($query->rowCount() < 1) {
             return false;
         } elseif (isset($class)) {
-            $rs = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
+            $rs = $query->fetchAll(\PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
         } else {
-            $rs = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
+            $rs = $query->fetchAll(\PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
         }
         self::__destruct();
         return $rs;
@@ -125,13 +125,13 @@ class Conexao
      * @param  String $param => Parametro adicional - se não declada = NULL
      * @return String        => Resultado da Query  - exibe o ultimo ID inserido
      */
-    public function insertDB($sql, $params = null)
+    public function insertDB($sql, $params=null)
     {
         $conexao = $this->connect();
         $query   = $conexao->prepare($sql);
         $query->execute($params);
 
-        $rs = $conexao->lastInserId() or die(print_r($query->errorInfo(), true));
+        $rs = $conexao->lastInsertId() or die(print_r($query->errorInfo(), true));
 
         self::__destruct();
         return $rs;
@@ -162,7 +162,7 @@ class Conexao
      */
     public function deleteDB($sql, $params = null)
     {
-        $query = $this->connect()$this->prepare($sql);
+        $query = $this->connect()->prepare($sql);
         $query->execute($params);
 
         $rs = $query->rowCount() or die(print_r($query->errorInfo(), true));
