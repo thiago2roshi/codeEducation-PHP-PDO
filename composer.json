@@ -1,0 +1,29 @@
+{
+    "name": "php-pdo-project",
+    "description": "learning-code",
+    "type": "php",
+    "licence": "mit",
+    "authors": [
+        {
+            "name": "Thiago Souza '@thiagoroshi'",
+            "email": "ads.thiagosouza@gmail.com"
+        }
+    ],
+    "config":{
+        "cache-max-size": "300MiB"
+    },
+    "autoload":{
+        "classmap":[
+            "lib/",
+            "model/"
+        ],
+        "psr-0":{
+            "lib": "lib/",
+            "model": "model/"
+        },
+        "psr-4":{
+            "app\\": "app/" ,
+            "model\\": "model/"
+        }
+    }
+}
