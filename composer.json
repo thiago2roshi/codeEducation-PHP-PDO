@@ -17,12 +17,8 @@
             "lib/",
             "model/"
         ],
-        "psr-0":{
-            "lib": "lib/",
-            "model": "model/"
-        },
         "psr-4":{
-            "app\\": "app/" ,
+            "src\\": "app/" ,
             "model\\": "model/"
         }
     }
