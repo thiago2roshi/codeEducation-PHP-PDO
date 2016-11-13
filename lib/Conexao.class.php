@@ -6,8 +6,14 @@
  *
  * modelo simplificado para etapa 1 do projeto phpPDO
  */
-require_once __DIR__ . '/CONFIG.php';
-class Conexao
+namespace lib;
+
+require_once(__DIR__ .'/..'. '/vendor' . '/autoload.php');
+require_once(__DIR__ . '/CONFIG.php');
+
+use \PDO;
+
+abstract class Conexao
 {
     /**
      * construtor da conexão

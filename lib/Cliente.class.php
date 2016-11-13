@@ -1,7 +1,11 @@
 <?php
-require_once __DIR__ . '/Conexao.class.php';
+namespace lib;
+use \lib\Conexao;
+use \model\ClientesVO;
 
-class Cliente
+require_once __DIR__ . '/..'.'/vendor'.'/autoload.php';
+
+class Clientes extends Conexao
 {
     private $db;
     private $nome;
@@ -19,32 +23,13 @@ class Cliente
             unset($this->key);
         }
     }
-# Getters And Setters
-    public function setId($id){
-        $this->id = intval($id);
-        return $this;
-    }
-    public function setNome($nome){
-        $this->nome = $nome;
-        return $this;
-    }
-    public function setEmail($email){
-        $this->email = $email;
-        return $this;
-    }
-    public function getId()   {return $this->id;}
-    public function getNome() {return $this->nome;}
-    public function getEmail(){return $this->email;}
-
 # Methods
     public function listar()
     {
-        $query  = 'SELECT * FROM `clientes`';
-        $stmt   = $this->db->selectDB($query);
-        // $params = array(
-        //     ':search' => $this,
-        // );
-        // $stmt   = $this->db->selectDB($query, $params, $class=null) or die(print_r($stmt->errorInfo(), true));
+        $query  = 'SELECT * FROM `clientes` WHERE :condition';
+        $params = isset($this->condition) ? array(':condition' => $this->condition) : null;
+        $stmt   = $this->db->selectDB($query, $params, 'ClientesVO');
+
         self::__destruct();
         return $stmt;
     }

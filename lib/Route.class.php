@@ -34,13 +34,13 @@ class Route
         $res = ($http !== false)       ?
                 self::exploder($http)  :
                 "home";
-        $this->class  = $res[0];
-        $this->method = $res[1];
-        $this->value  = $res[2];
+        // $this->class  = $res[0];
+        // $this->method = $res[1];
+        // $this->value  = $res[2];
         return array(
-            'class'  => $this->class  ,
-            'method' => $this->method ,
-            'value'  => $this->value
+            'class'  => $res[0] ,
+            'method' => $res[1] ,
+            'value'  => $res[2]
         );
     }
     /**
