@@ -1,0 +1,28 @@
+{
+    "name": "php-pdo",
+    "authors": [
+      "thiago2roshi <ads.thiagosouza@gmail.com>"
+    ],
+    "description": "",
+    "main": "index.php",
+    "license": "none",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "vendor",
+        "view/vendor",
+        "example_code",
+        "proj.teste"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#^1.7.1",
+        "iron-elements": "PolymerElements/iron-elements#^1.0.10",
+        "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+        "gold-elements": "PolymerElements/gold-elements#^1.0.1"
+    }
+}
