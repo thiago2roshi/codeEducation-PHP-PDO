@@ -6,12 +6,11 @@ use \src\lib\Route;
 // $http = Route::exploder();
 $http = Route::request();
 
-// printf("<pre>%s</pre>", print_r($http, true));
 printf(
     "<pre>%s</pre>",
     print_r($http, true)
 );
-
+include __DIR__ . '/view/index.html';
 
 // $cliente = new Cliente();
 //
