@@ -1,0 +1,42 @@
+<link rel="import" href="../vendor/bower/polymer/polymer.html">
+
+<dom-module id='x-navbar'>
+    <template>
+    <style>
+        :host {
+            display: inline-block;
+        }
+        :host nav {
+            display: inline-block;
+            /*list-style-type: none;*/
+            margin: 0;
+            padding: 0;
+            /*overflow: hidden;*/
+            background-color: #1f1f1f;
+        }
+        :host a{
+            text-decoration: none #cecece;
+        }
+        :host a:hover {
+            background-color: #dce1dc;
+            text-decoration: underline #3c3c3c;
+        }
+    </style>
+
+    <nav>
+        <!-- <a href="[[xNavRef]]">[[xNavName]]</a> -->
+        <content></content>
+    </nav>
+</template>
+
+    <script>
+        Polymer({
+            is: "x-navbar",
+            properties:{
+                xNavRef: String,
+                xNavName: String
+            }
+        });
+    </script>
+
+</dom-module>
