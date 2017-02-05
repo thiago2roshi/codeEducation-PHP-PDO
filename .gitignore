@@ -1,7 +1,9 @@
 test/
 vendor/
+view/vendor/
 cache/
 example_code/
 proj.teste/
 TODO_PROJECT.MD
 composer.phar
+deployment-config.json
