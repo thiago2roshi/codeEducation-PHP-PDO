@@ -20,9 +20,9 @@
         "proj.teste"
     ],
     "dependencies": {
-        "polymer": "Polymer/polymer#^1.7.1",
-        "iron-elements": "PolymerElements/iron-elements#^1.0.10",
-        "paper-elements": "PolymerElements/paper-elements#^1.0.7",
-        "gold-elements": "PolymerElements/gold-elements#^1.0.1"
+        "polymer": "Polymer/polymer",
+        "iron-elements": "PolymerElements/iron-elements",
+        "paper-elements": "PolymerElements/paper-elements",
+        "gold-elements": "PolymerElements/gold-elements"
     }
 }

@@ -4,15 +4,15 @@
 <head>
     <title>WebPage</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="@thiagoroshi" name="author">
+
     <link rel="author" href="humans.txt">
     <link rel="shortcut icon" href="favicon.png">
-    <!-- Some Js Files-->
+
     <script type="text/javascript" href="view/vendor/bower/webcomponentsjs/webcomponents.min.js"></script>
-    <!-- Imports custom element -->
-    <link rel='import' href="view/import.html">
+    <link rel='import' href="import.html">
 
     <!-- CSS Code  -->
     <!--
@@ -21,17 +21,18 @@
 </head>
 
 <body>
-    <paper-menu>
-        <paper-item href='home'>home</paper-item>
-        <paper-item href='empresa'>Empresa</paper-item>
-        <paper-item href='produtos'>Produtos</paper-item>
-        <paper-item href='servicos'>Serviços</paper-item>
-        <paper-item href='contato'>contato</paper-item>
-    </paper-menu>
+    <iron-selector attr-for-selected="name" role='navigation' class='drawer-list'>
+        <a name='Home' href='home'>Home</a>
+        <a name='Produtos' href='produtos'>Produtos</a>
+        <a name='Empresa' href='empresa'>Empresa</a>
+        <a name='Servicos' href='servicos'>Serviços</a>
+        <a name='Contato' href='contato'>Contato</a>
+    </iron-selector>
+
         <!-- <x-navbar>
-            <a href='home'>home</a>
             <a href='empresa'>Empresa</a>
             <a href='produtos'>Produtos</a>
+            <a href='home'>home</a>
             <a href='servicos'>Serviços</a>
             <a href='contato'>contato</a>
         </x-navbar> -->
