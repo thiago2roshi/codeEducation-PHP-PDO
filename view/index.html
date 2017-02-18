@@ -20,22 +20,18 @@
     -->
 </head>
 
-<body>
-    <iron-selector attr-for-selected="name" role='navigation' class='drawer-list'>
-        <a name='Home' href='home'>Home</a>
-        <a name='Produtos' href='produtos'>Produtos</a>
-        <a name='Empresa' href='empresa'>Empresa</a>
-        <a name='Servicos' href='servicos'>Serviços</a>
-        <a name='Contato' href='contato'>Contato</a>
-    </iron-selector>
+<body unresolved>
 
-        <!-- <x-navbar>
-            <a href='empresa'>Empresa</a>
-            <a href='produtos'>Produtos</a>
-            <a href='home'>home</a>
-            <a href='servicos'>Serviços</a>
-            <a href='contato'>contato</a>
-        </x-navbar> -->
+    <!-- <iron-selector attr-for-selected="name" role='navigation' class='drawer-list'> -->
+    <paper-menu selected='0'>
+        <paper-item><a name='Home' href='home'>Home</a></paper-item>
+        <paper-item><a name='Produtos' href='produtos'>Produtos</a></paper-item>
+        <paper-item><a name='Empresa' href='empresa'>Empresa</a></paper-item>
+        <paper-item><a name='Servicos' href='servicos'>Serviços</a></paper-item>
+        <paper-item><a name='Contato' href='contato'>Contato</a></paper-item>
+    </paper-menu>
+    <!-- </iron-selector> -->
+
 </body>
 
 </html>

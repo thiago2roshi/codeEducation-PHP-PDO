@@ -1,8 +1,8 @@
 {
-    "name": "php-pdo-project",
+    "name": "thiagoroshi/php-pdo",
     "description": "learning-code",
     "type": "php",
-    "licence": "mit",
+    "license": "MIT",
     "authors": [
         {
             "name": "Thiago Souza '@thiagoroshi'",
